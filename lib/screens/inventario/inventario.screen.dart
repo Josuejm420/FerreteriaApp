@@ -105,4 +105,20 @@ class _InventarioScreenState extends State<InventarioScreen> {
     ),
   ];
 
- 
+
+  List<Producto> get _productosFiltrados {
+    return _listaProductos.where((producto) {
+      // Filtro por texto en el buscador
+      final coincideNombre = producto.nombre
+          .toLowerCase()
+          .contains(_textoBusqueda.toLowerCase());
+      if (!coincideNombre) return false;
+      // Filtro por botón seleccionado
+      if (_filtroSeleccionado == 'Stock Bajo') {
+        return producto.estado == 'Crítico';
+      } else if (_filtroSeleccionado == 'Próximo Vencimiento') {
+        return producto.proximoVencer;
+      }
+      return true; 
+    }).toList();
+  }
