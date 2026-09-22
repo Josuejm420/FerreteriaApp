@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/home/home.screen.dart';
 import 'screens/home/widget/placehoder.sreen.dart';
+import 'screens/home/widget/app.colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +16,12 @@ class MyApp extends StatelessWidget {
       title: 'Ferreteria Don Toño - Admin',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorSchemeSeed: Colors.orange,
+        colorSchemeSeed: Colors.blue,
         useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.azul,
+          foregroundColor: Colors.white,
+        ),
       ),
 
       // Ruta con la quw va comenzar la app

@@ -16,12 +16,13 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.azul,
         elevation: 0,
-        title: const Row(
-          children: [
-            Icon(Icons.build, color: Colors.white),
-            SizedBox(width: 8,),
-            Text('Don Toño - Admin'),
-          ],
+        title: const Text(
+          'Ferreteria Don Toño',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+          
         ),
         actions: [
           IconButton(

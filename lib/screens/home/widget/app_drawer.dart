@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app.colors.dart';
 
-// menu lateral izquierdo menu hamburguesa
-// se arma con un Drawer, column, encabezado y lista de opciones.
-
 class AppDrawer extends StatelessWidget{
     const AppDrawer({super.key});
 
