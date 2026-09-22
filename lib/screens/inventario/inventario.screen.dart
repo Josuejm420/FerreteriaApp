@@ -51,8 +51,49 @@ class MainApp extends StatelessWidget {
               ),
 
               const SizedBox(height: 15),
-  
-   ],
+
+            // Lista de Productos
+              Expanded(
+                child: ListView(
+                  children: const [
+                    // Producto 1
+                    ListTile(
+                      leading: Icon(Icons.build, size: 40),
+                      title: Text('Martillo Neumático', style: TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Text('Stock: 25'),
+                      trailing: Text('C\$ 150.00'),
+                    ),
+                    Divider(),
+
+                    // Producto 2
+                    ListTile(
+                      leading: Icon(Icons.cable, size: 40),
+                      title: Text('Cable Eléctrico Pro', style: TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Text('Stock: 26'),
+                      trailing: Text('C\$ 150.00'),
+                    ),
+                    Divider(),
+
+                    // Producto 3
+                    ListTile(
+                      leading: Icon(Icons.inventory_2, size: 40),
+                      title: Text('Cemento 42.5kg', style: TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Text('Stock: 10'),
+                      trailing: Text('C\$ 150.00'),
+                    ),
+                    Divider(),
+
+                    // Producto 4
+                    ListTile(
+                      leading: Icon(Icons.hardware, size: 40),
+                      title: Text('Tornillo madera 3"', style: TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Text('Stock: 12'),
+                      trailing: Text('C\$ 210.00'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
