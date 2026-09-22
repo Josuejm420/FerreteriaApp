@@ -17,5 +17,34 @@ class MainApp extends StatelessWidget {
           title: const Text('Inventario', style: TextStyle(color: Colors.white)),
           actions: const [Icon(Icons.search, color: Colors.white), SizedBox(width: 15)],
         ),
+        body: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              // Buscador
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Row(
+                  children: [
+                    Icon(Icons.search, color: Colors.grey),
+                    SizedBox(width: 10),
+                    Text('Buscar producto', style: TextStyle(color: Colors.grey)),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              //
   
-   }
+   ],
+          ),
+        ),
+      ),
+    );
+  }
+}
