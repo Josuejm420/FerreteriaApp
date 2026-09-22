@@ -96,6 +96,14 @@ class MainApp extends StatelessWidget {
             ],
           ),
         ),
+        // Botón Flotante
+      // Botón Flotante
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {},
+          backgroundColor: const Color(0xFF0D253F),
+          icon: const Icon(Icons.add, color: Colors.white),
+          label: const Text('Añadir Item', style: TextStyle(color: Colors.white)),
+        ),
       ),
     );
   }
