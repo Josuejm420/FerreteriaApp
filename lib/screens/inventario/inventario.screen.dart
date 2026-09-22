@@ -122,3 +122,19 @@ class _InventarioScreenState extends State<InventarioScreen> {
       return true; 
     }).toList();
   }
+
+    @override
+  Widget build(BuildContext context) {
+    // Títulos según la pestaña seleccionada abajo
+    final titulos = ['Inicio', 'Inventario', 'Facturación', 'Reportes', 'Más'];
+    return Scaffold(
+      //AppBar
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF0D253F),
+        leading: const Icon(Icons.menu, color: Colors.white),
+        title: Text(titulos[_indicePestana], style: const TextStyle(color: Colors.white)),
+        actions: const [
+          Icon(Icons.search, color: Colors.white),
+          SizedBox(width: 15),
+        ],
+      ),
