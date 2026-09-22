@@ -39,7 +39,18 @@ class MainApp extends StatelessWidget {
 
               const SizedBox(height: 15),
 
-              //
+              // Botones de filtro
+              const Row(
+                children: [
+                  Chip(label: Text('Todo', style: TextStyle(color: Colors.white)), backgroundColor: Color(0xFF0D253F)),
+                  SizedBox(width: 5),
+                  Chip(label: Text('Stock Bajo')),
+                  SizedBox(width: 5),
+                  Chip(label: Text('Próximo Vencimiento')),
+                ],
+              ),
+
+              const SizedBox(height: 15),
   
    ],
           ),
