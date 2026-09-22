@@ -197,3 +197,52 @@ class _InventarioScreenState extends State<InventarioScreen> {
       ),
     );
   }
+
+ 
+  Widget _construirVistaInventario() {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        children: [
+          // Buscador
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: TextField(
+              controller: _controladorBusqueda,
+              onChanged: (valor) {
+                setState(() {
+                  _textoBusqueda = valor;
+                });
+              },
+              decoration: const InputDecoration(
+                icon: Icon(Icons.search, color: Colors.grey),
+                hintText: 'Buscar producto',
+                hintStyle: TextStyle(color: Colors.grey),
+                border: InputBorder.none,
+                isDense: true,
+                contentPadding: EdgeInsets.symmetric(vertical: 10),
+              ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          // Botones con filtros 
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _botonFiltro('Todo'),
+                const SizedBox(width: 8),
+                _botonFiltro('Stock Bajo'),
+                const SizedBox(width: 8),
+                _botonFiltro('Próximo Vencimiento'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 15),
+
+          
