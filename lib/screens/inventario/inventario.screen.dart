@@ -104,8 +104,6 @@ class _InventarioScreenState extends State<InventarioScreen> {
       icono: Icons.format_paint,
     ),
   ];
-
-
   List<Producto> get _productosFiltrados {
     return _listaProductos.where((producto) {
       // Filtro por texto en el buscador
@@ -138,3 +136,64 @@ class _InventarioScreenState extends State<InventarioScreen> {
           SizedBox(width: 15),
         ],
       ),
+
+      body: _indicePestana == 1
+          ? _construirVistaInventario()
+          : Center(
+              child: Text(
+                'Pantalla de ${titulos[_indicePestana]}',
+                style: const TextStyle(fontSize: 18, color: Colors.grey),
+              ),
+            ),
+      // Boton flotante
+      floatingActionButton: _indicePestana == 1
+          ? FloatingActionButton.extended(
+              onPressed: () {},
+              backgroundColor: const Color(0xFF0D253F),
+              icon: const Icon(Icons.add, color: Colors.white),
+              label: const Text('Añadir Item', style: TextStyle(color: Colors.white)),
+            )
+          : null,
+
+           // Iconos 
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _indicePestana,
+        onTap: (nuevoIndice) {
+          setState(() {
+            _indicePestana = nuevoIndice; // Cambia de pestaña activa
+          });
+        },
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: const Color(0xFF0D253F),
+        unselectedItemColor: Colors.grey,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: 'Inicio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.inventory_2_outlined),
+            activeIcon: Icon(Icons.inventory_2),
+            label: 'Inventario',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.receipt_long_outlined),
+            activeIcon: Icon(Icons.receipt_long),
+            label: 'Facturación',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart_outlined),
+            activeIcon: Icon(Icons.bar_chart),
+            label: 'Reportes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.more_horiz),
+            label: 'Más',
+          ),
+        ],
+      ),
+    );
+  }
