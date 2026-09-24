@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/inventario':(context) => const PlacehoderScreen(titulo: 'Inventario'),
         /*'/facturacion':(context) => const PlacehoderScreen(titulo: 'Facturacion'),*/
         '/reportes':(context) => const PlacehoderScreen(titulo: 'Reportes'),
+        '/proveedores':(context) => const PlacehoderScreen(titulo: 'Proveedores'),
 
       }, 
     );

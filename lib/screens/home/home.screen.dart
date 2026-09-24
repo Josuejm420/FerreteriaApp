@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Hola, Binevenido de Nueva',
+                'Hola, Bienvenido de Nueva',
                  style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     MenuItemCard(
                       icono: Icons.people_alt,
-                      titulo: 'ClienteS',
+                      titulo: 'Clientes',
                       onTap: () => Navigator.pushNamed(context, '/cliente'),
                     ),
                     MenuItemCard(
@@ -103,6 +103,11 @@ class HomeScreen extends StatelessWidget {
                       titulo: 'Reportes', 
                       onTap: () => Navigator.pushNamed(context, '/reportes'),
                     ),
+                    MenuItemCard(
+                      icono: Icons.local_shipping, 
+                      titulo: 'Proveedores', 
+                      onTap: () => Navigator.pushNamed(context, '/proveedores'),
+                    )
                   ],
 
                 ),

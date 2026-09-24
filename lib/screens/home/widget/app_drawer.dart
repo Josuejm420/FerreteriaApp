@@ -56,6 +56,14 @@ class AppDrawer extends StatelessWidget{
                         },
                     ),
                     _DrawerItem(
+                        icono: Icons.local_shipping,
+                        titulo: 'Proveedores',
+                        onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, '/proveedores');
+                        },
+                    ),
+                    _DrawerItem(
                         icono: Icons.insert_chart,
                         titulo: 'Reportes',
                         onTap: () {
