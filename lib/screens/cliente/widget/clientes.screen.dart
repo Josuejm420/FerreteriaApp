@@ -43,18 +43,25 @@ class _ClientesScreenState extends State<ClientesScreen> {
       'estado': 'Activo'
     },
   ];
-
   String filtro = 'Todos';
+  String textoBusqueda = '';
 
   @override
   Widget build(BuildContext context) {
     List<Map<String, String>> clientesMostrar = [];
     for (var cliente in listaClientes) {
+      bool coincideEstado = false;
       if (filtro == 'Todos') {
-        clientesMostrar.add(cliente);
+        coincideEstado = true;
       } else if (filtro == 'Activos' && cliente['estado'] == 'Activo') {
-        clientesMostrar.add(cliente);
+        coincideEstado = true;
       } else if (filtro == 'Inactivos' && cliente['estado'] == 'Inactivo') {
+        coincideEstado = true;
+      }
+      bool coincideNombre = cliente['nombre']!
+          .toLowerCase()
+          .contains(textoBusqueda.toLowerCase());
+      if (coincideEstado && coincideNombre) {
         clientesMostrar.add(cliente);
       }
     }
@@ -68,7 +75,28 @@ class _ClientesScreenState extends State<ClientesScreen> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: TextField(
+              onChanged: (valor) {
+                setState(() {
+                  textoBusqueda = valor;
+                });
+              },
+              decoration: InputDecoration(
+                hintText: 'Buscar cliente...',
+                prefixIcon:
+                    const Icon(Icons.search, color: AppColors.textoGris),
+                fillColor: AppColors.blanco,
+                filled: true,
+                contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
