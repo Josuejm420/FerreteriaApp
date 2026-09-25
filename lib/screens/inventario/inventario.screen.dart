@@ -197,3 +197,168 @@ class _InventarioScreenState extends State<InventarioScreen> {
       ),
     );
   }
+
+// Vista del inventario
+  Widget _construirVistaInventario() {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        children: [
+          // Buscador 
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: TextField(
+              controller: _controladorBusqueda,
+              onChanged: (valor) {
+                setState(() {
+                  _textoBusqueda = valor;
+                });
+              },
+              decoration: const InputDecoration(
+                icon: Icon(Icons.search, color: Colors.grey),
+                hintText: 'Buscar producto',
+                hintStyle: TextStyle(color: Colors.grey),
+                border: InputBorder.none,
+                isDense: true,
+                contentPadding: EdgeInsets.symmetric(vertical: 10),
+              ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          // Botones
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _botonFiltro('Todo'),
+                const SizedBox(width: 8),
+                _botonFiltro('Stock Bajo'),
+                const SizedBox(width: 8),
+                _botonFiltro('Próximo Vencimiento'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 15),
+          // Encabezados
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 6),
+            child: Row(
+              children: [
+                SizedBox(width: 58), 
+                Expanded(
+                  flex: 3,
+                  child: Text('Product   SKU',
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+                SizedBox(
+                  width: 35,
+                  child: Text('Stock',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+                SizedBox(
+                  width: 75,
+                  child: Text('Price (C\$)',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+                SizedBox(width: 10),
+                SizedBox(
+                  width: 65,
+                  child: Text('Estado',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+              ],
+            ),
+          ),
+          const Divider(),
+          // Lista de Productos 
+          Expanded(
+            child: _productosFiltrados.isEmpty
+                ? const Center(
+                    child: Text('No se encontraron productos',
+                        style: TextStyle(color: Colors.grey, fontSize: 14)),
+                  )
+                : ListView.separated(
+                    itemCount: _productosFiltrados.length,
+                    separatorBuilder: (context, index) => const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      final producto = _productosFiltrados[index];
+                      return _filaProducto(producto);
+                    },
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Widget para crear cada botón de filtro con su cambio de color
+  Widget _botonFiltro(String titulo) {
+    final bool seleccionado = _filtroSeleccionado == titulo;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _filtroSeleccionado = titulo; // Cambia el filtro actual
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: seleccionado ? const Color(0xFF0D253F) : const Color(0xFFEFF2F5),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          titulo,
+          style: TextStyle(
+            color: seleccionado ? Colors.white : Colors.black87,
+            fontWeight: seleccionado ? FontWeight.bold : FontWeight.w500,
+            fontSize: 13,
+          ),
+        ),
+      ),
+    );
+  }
+  
+  Widget _filaProducto(Producto producto) {
+    final bool esCritico = producto.estado == 'Crítico';
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: const Color(0xFFF0F4F8),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(producto.icono, color: const Color(0xFF0D253F), size: 26),
+          ),
+          const SizedBox(width: 10),
+          // Nombre y Subtítulo
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  producto.nombre,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  producto.subtitulo,
+                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                ),
+              ],
+            ),
+          ),
