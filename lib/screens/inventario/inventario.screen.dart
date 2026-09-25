@@ -104,8 +104,6 @@ class _InventarioScreenState extends State<InventarioScreen> {
       icono: Icons.format_paint,
     ),
   ];
-
-
   List<Producto> get _productosFiltrados {
     return _listaProductos.where((producto) {
       // Filtro por texto en el buscador
@@ -138,3 +136,273 @@ class _InventarioScreenState extends State<InventarioScreen> {
           SizedBox(width: 15),
         ],
       ),
+
+      body: _indicePestana == 1
+          ? _construirVistaInventario()
+          : Center(
+              child: Text(
+                'Pantalla de ${titulos[_indicePestana]}',
+                style: const TextStyle(fontSize: 18, color: Colors.grey),
+              ),
+            ),
+      // Boton flotante
+      floatingActionButton: _indicePestana == 1
+          ? FloatingActionButton.extended(
+              onPressed: () {},
+              backgroundColor: const Color(0xFF0D253F),
+              icon: const Icon(Icons.add, color: Colors.white),
+              label: const Text('Añadir Item', style: TextStyle(color: Colors.white)),
+            )
+          : null,
+
+           // Iconos 
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _indicePestana,
+        onTap: (nuevoIndice) {
+          setState(() {
+            _indicePestana = nuevoIndice; // Cambia de pestaña activa
+          });
+        },
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: const Color(0xFF0D253F),
+        unselectedItemColor: Colors.grey,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: 'Inicio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.inventory_2_outlined),
+            activeIcon: Icon(Icons.inventory_2),
+            label: 'Inventario',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.receipt_long_outlined),
+            activeIcon: Icon(Icons.receipt_long),
+            label: 'Facturación',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart_outlined),
+            activeIcon: Icon(Icons.bar_chart),
+            label: 'Reportes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.more_horiz),
+            label: 'Más',
+          ),
+        ],
+      ),
+    );
+  }
+
+ 
+  Widget _construirVistaInventario() {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        children: [
+          // Buscador
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: TextField(
+              controller: _controladorBusqueda,
+              onChanged: (valor) {
+                setState(() {
+                  _textoBusqueda = valor;
+                });
+              },
+              decoration: const InputDecoration(
+                icon: Icon(Icons.search, color: Colors.grey),
+                hintText: 'Buscar producto',
+                hintStyle: TextStyle(color: Colors.grey),
+                border: InputBorder.none,
+                isDense: true,
+                contentPadding: EdgeInsets.symmetric(vertical: 10),
+              ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          // Botones con filtros 
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _botonFiltro('Todo'),
+                const SizedBox(width: 8),
+                _botonFiltro('Stock Bajo'),
+                const SizedBox(width: 8),
+                _botonFiltro('Próximo Vencimiento'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 15),
+
+             // Encabezados de Columna (Product, SKU, Stock, Price, Estado)
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 6),
+            child: Row(
+              children: [
+                SizedBox(width: 58), // Espacio que ocupa la imagen del producto
+                Expanded(
+                  flex: 3,
+                  child: Text('Product   SKU',
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+                SizedBox(
+                  width: 35,
+                  child: Text('Stock',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+                SizedBox(
+                  width: 75,
+                  child: Text('Price (C\$)',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+                SizedBox(width: 10),
+                SizedBox(
+                  width: 65,
+                  child: Text('Estado',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+              ],
+            ),
+          ),
+          const Divider(),
+          // Lista de Productos Filtrados
+          Expanded(
+            child: _productosFiltrados.isEmpty
+                ? const Center(
+                    child: Text('No se encontraron productos',
+                        style: TextStyle(color: Colors.grey, fontSize: 14)),
+                  )
+                : ListView.separated(
+                    itemCount: _productosFiltrados.length,
+                    separatorBuilder: (context, index) => const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      final producto = _productosFiltrados[index];
+                      return _filaProducto(producto);
+                    },
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+  Widget _botonFiltro(String titulo) {
+    final bool seleccionado = _filtroSeleccionado == titulo;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _filtroSeleccionado = titulo; 
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: seleccionado ? const Color(0xFF0D253F) : const Color(0xFFEFF2F5),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          titulo,
+          style: TextStyle(
+            color: seleccionado ? Colors.white : Colors.black87,
+            fontWeight: seleccionado ? FontWeight.bold : FontWeight.w500,
+            fontSize: 13,
+          ),
+        ),
+      ),
+    );
+  }
+  // Widget 
+  Widget _filaProducto(Producto producto) {
+    final bool esCritico = producto.estado == 'Crítico';
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          // Imagen 
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: const Color(0xFFF0F4F8),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(producto.icono, color: const Color(0xFF0D253F), size: 26),
+          ),
+          const SizedBox(width: 10),
+          // Nombre y Subtítulo
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  producto.nombre,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  producto.subtitulo,
+                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                ),
+              ],
+            ),
+          ),
+          // Cantidad 
+          SizedBox(
+            width: 35,
+            child: Text(
+              '${producto.cantidad}',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+            ),
+          ),
+          // Precio
+          SizedBox(
+            width: 75,
+            child: Text(
+              'C\$ ${producto.precio.toStringAsFixed(2)}',
+              textAlign: TextAlign.right,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+            ),
+          ),
+          const SizedBox(width: 10),
+          // Etiqueta de Estado (Crítico / Suficiente)
+          Container(
+            width: 65,
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            decoration: BoxDecoration(
+              color: esCritico ? const Color(0xFFFFEBEE) : const Color(0xFFE8F5E9),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              producto.estado,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: esCritico ? const Color(0xFFD32F2F) : const Color(0xFF2E7D32),
+                fontSize: 11,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
