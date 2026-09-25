@@ -50,3 +50,35 @@ class _AddProductScreenState extends State<AddProductScreen> {
               ),
             ),
             const SizedBox(height: 15),
+
+               // Categoria
+            const Text(
+              'Categoria',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 6),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  value: categoriaSeleccionada,
+                  isExpanded: true,
+                  items: categorias.map((String cat) {
+                    return DropdownMenuItem(
+                      value: cat,
+                      child: Text(cat),
+                    );
+                  }).toList(),
+                  onChanged: (nuevoValor) {
+                    setState(() {
+                      categoriaSeleccionada = nuevoValor!;
+                    });
+                  },
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
