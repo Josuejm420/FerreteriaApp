@@ -137,7 +137,7 @@ class _InventarioScreenState extends State<InventarioScreen> {
         ],
       ),
 
-      // --- CUERPO DINÁMICO SEGÚN LA PESTAÑA INFERIOR ---
+    
       body: _indicePestana == 1
           ? _construirVistaInventario()
           : Center(
@@ -146,7 +146,7 @@ class _InventarioScreenState extends State<InventarioScreen> {
                 style: const TextStyle(fontSize: 18, color: Colors.grey),
               ),
             ),
-      // --- BOTÓN FLOTANTE (Solo visible en Inventario) ---
+      // Boton flotante
       floatingActionButton: _indicePestana == 1
           ? FloatingActionButton.extended(
               onPressed: () {},
@@ -155,7 +155,7 @@ class _InventarioScreenState extends State<InventarioScreen> {
               label: const Text('Añadir Item', style: TextStyle(color: Colors.white)),
             )
           : null,
-      // --- ICONOS DE ABAJO (BottomNavigationBar) ---
+      // Iconos
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indicePestana,
         onTap: (nuevoIndice) {
