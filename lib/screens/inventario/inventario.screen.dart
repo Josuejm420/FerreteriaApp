@@ -299,13 +299,12 @@ class _InventarioScreenState extends State<InventarioScreen> {
     );
   }
 
-  // Widget para crear cada botón de filtro con su cambio de color
   Widget _botonFiltro(String titulo) {
     final bool seleccionado = _filtroSeleccionado == titulo;
     return GestureDetector(
       onTap: () {
         setState(() {
-          _filtroSeleccionado = titulo; // Cambia el filtro actual
+          _filtroSeleccionado = titulo; 
         });
       },
       child: Container(
@@ -362,3 +361,45 @@ class _InventarioScreenState extends State<InventarioScreen> {
               ],
             ),
           ),
+
+          SizedBox(
+            width: 35,
+            child: Text(
+              '${producto.cantidad}',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+            ),
+          ),
+          // Precio
+          SizedBox(
+            width: 75,
+            child: Text(
+              'C\$ ${producto.precio.toStringAsFixed(2)}',
+              textAlign: TextAlign.right,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+            ),
+          ),
+          const SizedBox(width: 10),
+          // Etiqueta de Estado (Crítico / Suficiente)
+          Container(
+            width: 65,
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            decoration: BoxDecoration(
+              color: esCritico ? const Color(0xFFFFEBEE) : const Color(0xFFE8F5E9),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              producto.estado,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: esCritico ? const Color(0xFFD32F2F) : const Color(0xFF2E7D32),
+                fontSize: 11,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
