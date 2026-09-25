@@ -233,3 +233,30 @@ class _AddProductScreenState extends State<AddProductScreen> {
             ),
             const SizedBox(height: 25),
 
+  // Botón amarillo "Guardar Cambios"
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFF7B928), // Color amarillo/mostaza
+                ),
+                onPressed: () {
+                  // Acción al guardar
+                },
+                child: const Text(
+                  'Guardar Cambios',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
