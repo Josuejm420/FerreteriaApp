@@ -245,4 +245,58 @@ class _InventarioScreenState extends State<InventarioScreen> {
           ),
           const SizedBox(height: 15),
 
-          
+             // 3. Encabezados de Columna (Product, SKU, Stock, Price, Estado)
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 6),
+            child: Row(
+              children: [
+                SizedBox(width: 58), // Espacio que ocupa la imagen del producto
+                Expanded(
+                  flex: 3,
+                  child: Text('Product   SKU',
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+                SizedBox(
+                  width: 35,
+                  child: Text('Stock',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+                SizedBox(
+                  width: 75,
+                  child: Text('Price (C\$)',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+                SizedBox(width: 10),
+                SizedBox(
+                  width: 65,
+                  child: Text('Estado',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                ),
+              ],
+            ),
+          ),
+          const Divider(),
+          // 4. Lista de Productos Filtrados
+          Expanded(
+            child: _productosFiltrados.isEmpty
+                ? const Center(
+                    child: Text('No se encontraron productos',
+                        style: TextStyle(color: Colors.grey, fontSize: 14)),
+                  )
+                : ListView.separated(
+                    itemCount: _productosFiltrados.length,
+                    separatorBuilder: (context, index) => const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      final producto = _productosFiltrados[index];
+                      return _filaProducto(producto);
+                    },
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+  
