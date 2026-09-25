@@ -184,3 +184,52 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
               ],
             ),
+ const SizedBox(height: 15),
+
+  // Iconos
+            const Text(
+              'Descripción',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 6),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Column(
+                children: [
+                  // Fila de iconos
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                    child: Row(
+                      children: const [
+                        Icon(Icons.format_bold, size: 20),
+                        SizedBox(width: 15),
+                        Icon(Icons.format_italic, size: 20),
+                        SizedBox(width: 15),
+                        Icon(Icons.format_underlined, size: 20),
+                        SizedBox(width: 15),
+                        Icon(Icons.format_color_text, size: 20),
+                        SizedBox(width: 15),
+                        Icon(Icons.format_list_bulleted, size: 20),
+                        SizedBox(width: 15),
+                        Icon(Icons.format_list_numbered, size: 20),
+                      ],
+                    ),
+                  ),
+                  const Divider(height: 1),
+                  // Cuadro para escribir la descripción
+                  const TextField(
+                    maxLines: 4,
+                    decoration: InputDecoration(
+                      hintText: 'Descripción rich text editor...',
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.all(10),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 25),
+
