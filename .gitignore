@@ -46,3 +46,12 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+
+#archivo de prueba este archivo de prueba no se subira al repositorio
+# a la hora que hagas push tampoco te aparece porque este archivo quedara
+#guardado en tu maquina para prube de tu pantalla...
+
+#para que lo ejecutes en tu terminal vas ejecutar
+# flutter run -t lib/
+dosker_main.dart
