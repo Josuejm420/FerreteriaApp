@@ -35,7 +35,7 @@ class DetalleProductoScreen extends StatelessWidget {
           children: [
             // Título del producto
             const Text(
-              'Taladro eléctrico 600W',
+              'Taladro eléctrico TRUPPER 600W',
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -83,7 +83,10 @@ class DetalleProductoScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Text('Código:'),
+                      Text('Código:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),),
                       Text('PROD-00122', style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
@@ -91,23 +94,51 @@ class DetalleProductoScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Text('Precio de compra:'),
-                      Text('C\$ 1,450.00', style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text('Precio de compra:',
+                      style: TextStyle(
+                      fontWeight: FontWeight.bold
+                      ),)
+                    ,
+                      Text('C\$ 1,450.00', style: TextStyle()),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Text('Precio de venta:'),
+                      Text('Precio de venta:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),),
                       Text('C\$ 1,850.00', style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
+                  
+                 const SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Marca',
+                      style:  TextStyle(
+                        fontSize: 12, 
+                        fontWeight: FontWeight.bold,
+                      ),),
+                      Text('TRUPER',
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),)
+                    ],
+
+                  ),
+
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Text('Stock:'),
+                      Text('Stock:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),),
                       Text('8', style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
@@ -115,7 +146,10 @@ class DetalleProductoScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Text('Stock mínimo:'),
+                      Text('Stock mínimo:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),),
                       Text('5', style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
