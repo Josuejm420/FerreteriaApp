@@ -1,3 +1,4 @@
+import 'package:ferreteria_app/screens/proveedor/widget/proveedores.screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/reportes/reportes.screen.dart';
 
