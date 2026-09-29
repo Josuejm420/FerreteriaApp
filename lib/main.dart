@@ -1,5 +1,8 @@
 import 'package:ferreteria_app/screens/proveedor/widget/proveedores.screen.dart';
 import 'package:flutter/material.dart';
+import 'screens/home/home.screen.dart';
+import 'screens/home/widget/placehoder.sreen.dart';
+import 'screens/home/widget/app.colors.dart';
 import 'screens/reportes/reportes.screen.dart';
 
 void main() {
@@ -9,12 +12,17 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Ferreteria Don Toño - Admin',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        colorSchemeSeed: Colors.blue,
+        useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.azul,
+          foregroundColor: Colors.white,
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -74,11 +82,21 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+
+      // Ruta con la quw va comenzar la app
+      initialRoute: '/',
+      // Rutas nombradas : cada string se va asociar a una pantalla 
+      // para navegar de usa Navegator.pushNamed(contex, '/nombre de la pantalla' etc.)
+      routes: {
+        '/':(context) => const HomeScreen(),
+        '/dashboard':(context) => const PlacehoderScreen(titulo: 'Dashboard'),
+        '/cliente':(context) => const PlacehoderScreen(titulo: 'Clientes'),
+        '/inventario':(context) => const PlacehoderScreen(titulo: 'Inventario'),
+        /*'/facturacion':(context) => const PlacehoderScreen(titulo: 'Facturacion'),*/
+        '/reportes':(context) => const PlacehoderScreen(titulo: 'Reportes'),
+        '/proveedores':(context) => const PlacehoderScreen(titulo: 'Proveedores'),
+
+      }, 
     );
   }
 }
