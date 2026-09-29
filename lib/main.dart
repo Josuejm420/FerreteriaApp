@@ -97,6 +97,17 @@ class _MyHomePageState extends State<MyHomePage> {
         /*AppRoutes.facturacion: (context) => const PlacehoderScreen(titulo: 'Facturacion'),*/
         AppRoutes.reportes: (context) => const PlacehoderScreen(titulo: 'Reportes'),
         AppRoutes.proveedores: (context) => const PlacehoderScreen(titulo: 'Proveedores'),
+      initialRoute: '/',
+      // Rutas nombradas : cada string se va asociar a una pantalla 
+      // para navegar de usa Navegator.pushNamed(contex, '/nombre de la pantalla' etc.)
+      routes: {
+        '/':(context) => const HomeScreen(),
+        '/dashboard':(context) => const PlacehoderScreen(titulo: 'Dashboard'),
+        '/cliente':(context) => const PlacehoderScreen(titulo: 'Clientes'),
+        '/inventario':(context) => const PlacehoderScreen(titulo: 'Inventario'),
+        /*'/facturacion':(context) => const PlacehoderScreen(titulo: 'Facturacion'),*/
+        '/reportes':(context) => const PlacehoderScreen(titulo: 'Reportes'),
+        '/proveedores':(context) => const PlacehoderScreen(titulo: 'Proveedores'),
 
       }, 
     );
