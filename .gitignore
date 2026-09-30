@@ -53,5 +53,5 @@ app.*.map.json
 #guardado en tu maquina para prube de tu pantalla...
 
 #para que lo ejecutes en tu terminal vas ejecutar
-# flutter run -t lib/
+# flutter run -t lib/dosker_main.dart
 dosker_main.dart

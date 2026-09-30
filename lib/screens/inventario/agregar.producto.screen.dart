@@ -30,7 +30,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
           backgroundColor: const Color(0xFF0D253F),
           leading: const Icon(Icons.arrow_back, color: Colors.white),
           title: const Text(
-            'Add/Edit producto',
+            'Editar producto',
             style: TextStyle(color: Colors.white),
           ),
         ),
