@@ -46,3 +46,14 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+#archivo de prueba este solo mante estara en tu maquina para prueba
+# este archi te lo creo para que no tengan conflicto de crear un main.dart de la carpeta rais lib
+#porque si cada uno de ustudes tienen creado un main.dart en sus ramas eso habra conflicto a la hora de mandarlo a la develop
+#en la develop ya existe un archivo main.dart asi que no deben de tener que crear el archivo mai.dart en sus ramas
+#porque habra conflicto para un codigo limpio de trabajo te voy crear uno de pruebe que solo este en tu maquina 
+#para ejucion de probar tus interfaces 
+# para asi evitar conflicta en la rama develop
+
+#archivo de prueba 
+star_main.dart
