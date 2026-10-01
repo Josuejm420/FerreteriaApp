@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'screens/reportes/reportes.screen.dart';
+import 'screens/historial_screen.dart';
 import 'package:ferreteria_app/screens/proveedor/widget/proveedores.screen.dart';
 import 'screens/home/home.screen.dart';
 import 'screens/home/widget/placehoder.sreen.dart';
@@ -16,7 +18,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ferretería Don Toño - Admin',
       debugShowCheckedModeBanner: false,
+
       theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+        ),
+        useMaterial3: true,
+      ),
+
+      // Pantalla que aparece al iniciar
+      home: const Reportesscreen(),
+
+      // Las dos pantallas quedan registradas
+      routes: {
+        '/reportes': (context) => const Reportesscreen(),
+        '/historial': (context) => const HistorialScreen(),
         colorSchemeSeed: AppColors.azul,
         useMaterial3: true,
         appBarTheme: const AppBarTheme(
